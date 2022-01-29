@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
     <div style="margin-top: 50px;" class="ui container">
-        <h1 class="ui center aligned header">Todo App</h1>
+        <h1 class="ui center aligned header">✨Todo App✨<br>
+            <a style='font-size:20px;' href='/about' class="ui">👉About👈</a>
+        </h1>
+        
         <form action="/add" method="POST" class="ui form">
             <div class="fields" style="flex-direction: column;">
                 <label for="todo_name">Title:</label>
