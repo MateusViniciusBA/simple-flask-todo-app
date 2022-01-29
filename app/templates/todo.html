@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block content %}
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">Todo App</h1>
+        <form action="/add" method="POST" class="ui form">
+            <div class="fields" style="flex-direction: column;">
+                <label for="todo_name">Title:</label>
+                <input type="text" name="todo_name" placeholder="Ex: Find Job">
+                <br>
+                <label for="todo_desc">Description:</label>
+                <input type="text" name="todo_desc" placeholder="Description....">
+                <br>
+                <button class="ui blue button" type="submit">Add</button>
+            </div>
+        </form>
+        {% if todo_list|length > 0 %}
+            {% for todo in todo_list %}
+                <div class="ui segment">
+                    <div class="first-row">
+                        <h2>#{{ todo.id }}</h2>
+                        <div>
+                            <div class="status">
+                                {% if todo.state == False %}
+                                    <span class="ui gray label">Not Complete</span>
+                                {% else %}
+                                    <span class="ui green label">Complete</span>   
+                                {% endif %}
+                            </div>
+                            <h5>{{ todo.date.strftime('%d-%m-%Y') }}</h5>
+                        </div>
+                    </div>
+                    <div class="tow-row">
+                        <h1>{{ todo.name }}</h1>
+                        <h5>{{ todo.desc }}</h5>
+                    </div>
+                    <div class="three-row">
+                        <a class="ui blue button" href="/update/{{ todo.id }}">Update</a>
+                        <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+        {% else %}
+            <p>No todos for today</p>
+        {% endif %}
+    </div>
+{% endblock %}
